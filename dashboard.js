@@ -1,5 +1,4 @@
 // import { user } from "./script.js";
-
 let dashboardWelcome = document.getElementById("welcome");
 // dashboardWelcome.innerHTML = `<h1 class="dashboard-welcome"> Welcome, ${user.username}! <h1>`;
 
@@ -27,4 +26,25 @@ logoutBtn.addEventListener("click", () => {
 });
 
 let blogTitle = document.getElementById('blogTitle');
-let blogContent = document.getElementById('blogContent')
+let blogContent = document.getElementById('blogContent');
+let postwrapper = document.getElementById('postwrapper')
+let viewwrapper = document.getElementById('viewwrapper')
+// postwrapper.style.display = 'none'
+
+function post() {
+  viewwrapper.innerHTML = `
+  <h1>${blogTitle.value}</h1>
+  <h6>${blogContent.value}</h6>
+  `
+}
+
+
+function postBlog() {
+  postwrapper.style.display = 'block'
+  
+}
+
+
+function viewPost() {
+  // viewwrapper.style.display = 
+}
