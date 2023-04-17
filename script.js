@@ -46,7 +46,7 @@ function signUp() {
       password: passwordInput.value,
       confirmPassword: confirmPasswordInput.value,
     };
-
+    console.log(user);
     // Get the array of registered users from localStorage or create an empty array if it doesn't exist
     let registeredUsers = JSON.parse(localStorage.getItem("members")) || [];
 

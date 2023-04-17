@@ -30,28 +30,62 @@ let blogContent = document.getElementById('blogContent');
 let postwrapper = document.getElementById('postwrapper')
 let viewwrapper = document.getElementById('posted')
 let date = new Date
-console.log(date);
+console.log(String(date.getDate()) + ' ' + String(date.getMonth()+1) + ' ' + String(date.getFullYear()));
+
 // postwrapper.style.display = 'none'
 
 function post() {
-  viewwrapper.innerHTML = `
-  <h1>${blogTitle.value}</h1>
-  <h6>${blogContent.value}</h6>
-  <p>Posted on ${date}</p>
-  <div>
-  <button class="btn1">Like</button>
-  <button class="btn1">Unlike</button>
-  </div>
+  let postArr = JSON.parse(localStorage.getItem("saved")) || [];;
+  let postObj = {
+    blogTitle: blogTitle.value,
+    blogContent: blogContent.value,
+    time: String(date.getDate()) + ' ' + String(date.getMonth()+1) + ' ' + String(date.getFullYear()),
+  };
+  postArr.push(postObj);
+  localStorage.setItem('saved', JSON.stringify(postArr))
+  console.log(postArr);
+
+  viewwrapper.innerHTML += `
+ <div class="done bg-primary rounded">
+ <h1>${postObj.blogTitle}</h1>
+ <h6>${postObj.blogContent}</h6>
+ <p>Posted on ${postObj.time}</p><br>
+ <div class="btn1wrapper">
+ <button id='like' class="btn1" onclick="like()">Like</button>
+ <button id="unlike" class="btn1" onclick="unlike()">Unlike</button>
+ </div>
+ </div>
   `
+  
+  postwrapper.style.display = 'none'
+  viewwrapper.style.display = 'block'
 }
 
 
 function postBlog() {
   postwrapper.style.display = 'block'
+  viewwrapper.style.display = 'none'
 
 }
 
 
 function viewPost() {
-  // viewwrapper.style.display = 
+  viewwrapper.style.display = 'block'
+  postwrapper.style.display = 'none'
+}
+function like() {
+  let likedArr = JSON.parse(localStorage.getItem("saved")) || [];
+  if (document.getElementById('like').style.backgroundColor != 'blue') {
+    document.getElementById('like').style.backgroundColor = 'blue'
+  }else{
+    document.getElementById('like').style.backgroundColor = 'brown'
+  }
+}
+function unlike() {
+  
+  if (document.getElementById('unlike').style.backgroundColor != 'blue') {
+    document.getElementById('unlike').style.backgroundColor = 'blue'
+  }else{
+    document.getElementById('unlike').style.backgroundColor = 'brown'
+  }
 }
