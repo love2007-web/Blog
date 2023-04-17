@@ -29,34 +29,64 @@ let blogTitle = document.getElementById('blogTitle');
 let blogContent = document.getElementById('blogContent');
 let postwrapper = document.getElementById('postwrapper')
 let viewwrapper = document.getElementById('posted')
+let Liked = document.getElementsByClassName('Liked')
 let date = new Date
-console.log(String(date.getDate()) + ' ' + String(date.getMonth()+1) + ' ' + String(date.getFullYear()));
-
+// let gotten = JSON.parse(localStorage.getItem("allPosts"))
 // postwrapper.style.display = 'none'
-
+let postArr = JSON.parse(localStorage.getItem("saved")) || [];
+console.log(postArr);
 function post() {
-  let postArr = JSON.parse(localStorage.getItem("saved")) || [];;
+  
   let postObj = {
+    // id: postArr.length+1,
     blogTitle: blogTitle.value,
     blogContent: blogContent.value,
-    time: String(date.getDate()) + ' ' + String(date.getMonth()+1) + ' ' + String(date.getFullYear()),
+    time: date,
+    isLiked: false
   };
-  postArr.push(postObj);
+  console.log(postObj);
+  if (postArr == null) {
+    postArr = [];
+    postArr.push(postObj);
+    localStorage.setItem("saved", JSON.stringify(postArr));
+    showPost()
+  } else {
+    postArr.push(postObj);
+    localStorage.setItem("saved", JSON.stringify(postArr));
+    showPost()
+  }
 
-  viewwrapper.innerHTML += `
- <div class="done bg-primary rounded">
- <h1>${postObj.blogTitle}</h1>
- <h6>${postObj.blogContent}</h6>
- <p>Posted on ${postObj.time}</p><br>
- <div class="btn1wrapper">
- <button id='like' class="btn1" onclick="like()">Like</button>
- <button id="unlike" class="btn1" onclick="unlike()">Unlike</button>
- </div>
- </div>
-  `
-  
   postwrapper.style.display = 'none'
   viewwrapper.style.display = 'block'
+}
+
+function showPost() {
+  if (postArr == null) {
+    return;
+  }else{
+    viewwrapper.innerHTML = ""
+    postArr.forEach((element, index) => {
+      viewwrapper.innerHTML += `
+          <h1>${element.blogTitle}</h1>
+          <p>${element.blogContent}</p>
+          <small>${date}</small>
+      `
+      if(element.isLiked == true){
+          viewwrapper.innerHTML += `
+          <button style="background-color: tomato;" onclick="likePost(${element.id})">
+              <i class="icofont-heart"></i>
+          </button>
+          `
+      }else{
+          viewwrapper.innerHTML += `
+          <button onclick="likePost(${element.id})">
+              <i class="icofont-heart"></i>
+          </button>
+          `
+      }
+      
+  });
+  }
 }
 
 
@@ -71,19 +101,9 @@ function viewPost() {
   viewwrapper.style.display = 'block'
   postwrapper.style.display = 'none'
 }
-function like() {
-  let likedArr = JSON.parse(localStorage.getItem("saved")) || [];
-  if (document.getElementById('like').style.backgroundColor != 'blue') {
-    document.getElementById('like').style.backgroundColor = 'blue'
-  }else{
-    document.getElementById('like').style.backgroundColor = 'brown'
-  }
-}
-function unlike() {
-  
-  if (document.getElementById('unlike').style.backgroundColor != 'blue') {
-    document.getElementById('unlike').style.backgroundColor = 'blue'
-  }else{
-    document.getElementById('unlike').style.backgroundColor = 'brown'
+function viewLiked() {
+  if (Liked.innerHTML == "") {
+    Liked.innerHTML = 'There are no liked posts'
+    d
   }
 }

@@ -14,10 +14,10 @@
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
@@ -50,7 +50,7 @@
             <button type="button" class="btn btn-info" onclick="viewLiked()">View Liked Posts</button>
           </div>
         </div>
-        <div class="postwrapper bg-success" id="postwrapper">
+        <div class="postwrapper" id="postwrapper">
           <div>
             <input type="text" class="w-50 rounded border-black m-2 p-2 d-block" placeholder="Blog Title" id="blogTitle">
             <textarea name="" id="blogContent" cols="30" rows="10" class="w-50 m-2 rounded p-2" placeholder="Blog Content"></textarea>
@@ -58,10 +58,8 @@
           <button class="btn btn-outline-primary m-2" onclick="post()">Post</button>
         </div>
         
-          <div class="posted w-50" class="" id="posted">
-            
-          
-        </div>
+          <div class="posted w-50" class="" id="posted"></div>
+          <div class="Liked w-50 "></div>
       </div>
       </div>
     </div>
