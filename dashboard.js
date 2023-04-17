@@ -42,8 +42,6 @@ function post() {
     time: String(date.getDate()) + ' ' + String(date.getMonth()+1) + ' ' + String(date.getFullYear()),
   };
   postArr.push(postObj);
-  localStorage.setItem('saved', JSON.stringify(postArr))
-  console.log(postArr);
 
   viewwrapper.innerHTML += `
  <div class="done bg-primary rounded">
