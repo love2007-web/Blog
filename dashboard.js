@@ -77,8 +77,8 @@ function showPost() {
       `
       if (element.isLiked == true) {
         viewwrapper.innerHTML += `
-          <button style="background-color: tomato;" onclick="likePost(${element.id})">
-              <i class="icofont-heart"></i>
+          <button style="background-color: blue;" onclick="likePost(${element.id})">
+              unlike
           </button>
           `
       } else {
@@ -93,7 +93,7 @@ function showPost() {
   }
 }
 showPost()
-function likePost(params) {
+function likePost(id) {
   let found = postArr.find(el => el.id == id);
   if (found.isLiked == false) {
     found.isLiked = true;
